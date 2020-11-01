@@ -1,0 +1,32 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+  - name: Creating A WorkSpace on MN
+    file:
+      path: /root/AnsibleTask1WebWS
+      state: directory
+  - name: Copying Content Into Managed Node
+    copy:
+      src: "index.html"
+      dest: "/root/AnsibleTask1WebWS"
+    ignore_errors: yes
+  - name: Starting Docker Service
+    service:
+      name: docker
+      state: started
+  - name: pull an image
+    docker_image:
+      name: apache2
+      source: pull
+  - name: Creating Docker Container
+    docker_container:
+      name: mywebserveros
+      image: apache2
+      state: started
+      detach: true
+      interactive: true
+      ports:
+      - "1111:80"
+      volumes:
+      - /root/AnsibleTask1WebWS/:/usr/local/apache2/htdocs/

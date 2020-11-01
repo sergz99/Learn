@@ -1,0 +1,38 @@
+---
+- hosts: all
+  become_user: root
+  gather_facts: false
+  tasks:
+  - name: Creating A WorkSpace on MN
+    file:
+      path: /root/AnsibleTask1WebWS
+      state: directory
+  - name: Copying Content Into Managed Node
+    copy:
+      src: "index.html"
+      dest: "/root/AnsibleTask1WebWS"
+    ignore_errors: yes
+  - name: Copying Content Into Managed Node
+    copy:
+      src: "some_file.php"
+      dest: "/root/AnsibleTask1WebWS"
+    ignore_errors: yes
+  - name: Starting Docker Service
+    service:
+      name: docker
+      state: started
+  - name: pull an image
+    docker_image:
+      name: nginx
+      source: pull
+  - name: Creating Docker Container
+    docker_container:
+      name: mywebserveros
+      image: nginx
+      state: started
+      detach: true
+      interactive: true
+      ports:
+      - "1111:80"
+      volumes:
+      - /root/AnsibleTask1WebWS/:/usr/share/nginx/html/
