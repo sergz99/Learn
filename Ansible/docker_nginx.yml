@@ -5,7 +5,7 @@
   tasks:
   - name: Creating A WorkSpace on MN
     file:
-      path: /root/AnsibleTask1WebWS
+      path: /root/AnsibleTask1WebWS/log
       state: directory
   - name: Copying Content Into Managed Node
     copy:
@@ -36,3 +36,4 @@
       - "1111:80"
       volumes:
       - /root/AnsibleTask1WebWS/:/usr/share/nginx/html/
+      - /root/AnsibleTask1WebWS/log/:/var/log/nginx/
