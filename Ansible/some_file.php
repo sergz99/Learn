@@ -1,5 +1,7 @@
 <?php
 
+echo $_SERVER['REMOTE_ADDR'];
+
 // Показывать всю информацию, по умолчанию INFO_ALL
 phpinfo(32);
 
@@ -8,4 +10,3 @@ phpinfo(32);
 phpinfo(INFO_MODULES);
 
 ?>
-
