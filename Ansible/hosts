@@ -12,8 +12,8 @@
 
 #green.example.com
 #blue.example.com
-192.168.100.4 ansible_ssh_user=root
-192.168.100.11 ansible_ssh_user=root
+#192.168.100.4 ansible_ssh_user=root
+192.168.100.12 ansible_ssh_user=root
 #192.168.100.10 ansible_ssh_user=root
 
 # Ex 2: A collection of hosts belonging to the 'webservers' group
@@ -42,4 +42,3 @@
 # leading 0s:
 
 #db-[99:101]-node.example.com
-
