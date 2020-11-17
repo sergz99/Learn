@@ -1,0 +1,43 @@
+
+---
+- hosts: all 
+  become: yes
+  gather_facts: no
+ 
+  tasks:
+       
+   - name: Install aptitude using apt
+     apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+   - name: Install required system packages
+     apt: name=apt-transport-https state=latest update_cache=yes
+     
+   - name: Install required system packages
+     apt: name=ca-certificates state=latest update_cache=yes
+
+   - name: Install required system packages
+     apt: name=curl state=latest update_cache=yes
+
+   - name: Install required system packages
+     apt: name=software-properties-common state=latest update_cache=yes
+
+   - name: Install required system packages
+     apt: name=python3-pip state=latest update_cache=yes
+
+   - name: Install required system packages
+     apt: name=virtualenv state=latest update_cache=yes
+
+   - name: Install required system packages
+     apt: name=python3-setuptools state=latest update_cache=yes
+
+   - name: Add Docker GPG apt Key
+     apt_key:
+       url: https://download.docker.com/linux/ubuntu/gpg
+       state: present
+
+   - name: Update apt and install docker-ce
+     apt: update_cache=yes name=docker-ce state=latest
+
+   - name: Install Docker Module for Python
+     pip:
+       name: docker

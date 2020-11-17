@@ -1,0 +1,33 @@
+
+---
+- hosts: all 
+  ansible_user: useradmin_vpn-2020
+  gather_facts: no
+ 
+  tasks:
+       
+   - name: Install aptitude using apt
+     apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+   - name: Install required system packages
+     apt: name=apt-transport-https state=latest update_cache=yes
+     
+   - name: Install required system packages
+     apt: name=ca-certificates state=latest update_cache=yes
+
+   - name: Install required system packages
+     apt: name=curl state=latest update_cache=yes
+
+   - name: Install required system packages
+     apt: name=software-properties-common state=latest update_cache=yes
+
+   - name: Install required system packages
+     apt: name=python3-pip state=latest update_cache=yes
+
+   - name: Install required system packages
+     apt: name=virtualenv state=latest update_cache=yes
+
+   - name: Install required system packages
+     apt: name=python3-setuptools state=latest update_cache=yes
+
+   
