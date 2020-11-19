@@ -7,4 +7,4 @@ def do_magic():
     return "Hello!{0}".format(now)
 
 if __name__ == '__main__':
-    print(do _magic())
+    print(do_magic())
