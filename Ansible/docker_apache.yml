@@ -17,12 +17,12 @@
       state: started
   - name: pull an image
     docker_image:
-      name: apache2
+      name: httpd
       source: pull
   - name: Creating Docker Container
     docker_container:
       name: mywebserveros
-      image: apache2
+      image: httpd
       state: started
       detach: true
       interactive: true
