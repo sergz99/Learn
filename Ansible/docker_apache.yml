@@ -11,6 +11,11 @@
       src: "index.html"
       dest: "/root/AnsibleTask1WebWS"
     ignore_errors: yes
+  - name: Copying Content Into Managed Node
+    copy:
+      src: "app.py"
+      dest: "/root/AnsibleTask1WebWS"
+    ignore_errors: yes
   - name: Starting Docker Service
     service:
       name: docker
