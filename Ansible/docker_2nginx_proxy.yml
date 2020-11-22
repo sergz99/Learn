@@ -1,0 +1,44 @@
+---
+- hosts: all
+  become_user: root
+  gather_facts: false
+  tasks:
+  - name: Creating A WorkSpace on MN
+    file:
+      path: /root/AnsibleTask1WebWS/logs
+      state: directory
+  - name: Creating A WorkSpace on MN
+    file:
+      path: /root/AnsibleTask1WebWS/prox_conf
+      state: directory
+  - name: Copying Content Into Managed Node
+    copy:
+      src: "index.html"
+      dest: "/root/AnsibleTask1WebWS"
+    ignore_errors: yes
+  - name: Copying Content Into Managed Node
+    copy:
+      src: "nginx_prox.conf"
+      dest: "/root/AnsibleTask1WebWS/prox_conf/default.conf"
+    ignore_errors: yes
+  - name: Starting Docker Service
+    service:
+      name: docker
+      state: started
+  - name: pull an image
+    docker_image:
+      name: nginx
+      source: pull
+  - name: Creating Docker Container nginx prox
+    docker_container:
+      name: nginx_prox
+      image: nginx
+      state: started
+      detach: true
+      interactive: true
+      ports:
+      - "1111:80"
+      volumes:
+      - /root/AnsibleTask1WebWS/prox_conf/:/etc/nginx/conf.d/
+      - /root/AnsibleTask1WebWS/:/usr/share/nginx/html/
+      - /root/AnsibleTask1WebWS/logs:/var/log/nginx
