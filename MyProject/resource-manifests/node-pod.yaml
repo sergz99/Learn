@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod                                            # 1
 metadata:
-  name: nginx-frontend
+  name: node
   labels:
-    app: nginx-frontend                                 # 2
+    app: node                                 # 2
 spec:
   volumes:
   - name: project-volume
@@ -11,12 +11,10 @@ spec:
       # directory location on host
       path: /hosthome/useradmin/data
       # this field is optional
-      type: Directory                                                  # 3
+      type: DirectoryOrCreate                                                  # 3
   containers:
     - image: sergz99/nginx-symfony # 4
-      name: nginx-frontend                              # 5
-      ports:
-        - containerPort: 80                          # 6
+      name: node                              # 5
       volumeMounts:
       - mountPath: /project
         name: project-volume

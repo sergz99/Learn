@@ -5,8 +5,18 @@ metadata:
   labels:
     app: php                                 # 2
 spec:                                                # 3
+  volumes:
+  - name: project-volume
+    hostPath:
+      # directory location on host
+      path: /hosthome/useradmin/data
+      # this field is optional
+      type: DirectoryOrCreate
   containers:
     - image: sergz99/php-symfony # 4
       name: php                              # 5
       ports:
-        - containerPort: 80                          # 6
+        - containerPort: 9000                          # 6
+      volumeMounts:
+      - mountPath: /project
+        name: project-volume
