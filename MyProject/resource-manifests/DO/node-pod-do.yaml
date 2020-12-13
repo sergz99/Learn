@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod                                            # 1
+metadata:
+  name: node
+  labels:
+    app: node                                 # 2
+spec:
+  volumes:
+  - name: project-volume
+      persistentVolumeClaim:
+        claimName: data                                                  # 3
+  containers:
+    - image: sergz99/node-symfony # 4
+      name: node                              # 5
+      volumeMounts:
+      - mountPath: /project
+        name: project-volume

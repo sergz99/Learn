@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod                                            # 1
+metadata:
+  name: php
+  labels:
+    app: php                                 # 2
+spec:                                                # 3
+  volumes:
+  - name: project-volume
+      persistentVolumeClaim:
+        claimName: data
+  containers:
+    - image: sergz99/php-symfony # 4
+      name: php                              # 5
+      ports:
+        - containerPort: 9000                          # 6
+      volumeMounts:
+      - mountPath: /project
+        name: project-volume
