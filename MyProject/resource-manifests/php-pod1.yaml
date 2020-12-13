@@ -1,20 +1,22 @@
 apiVersion: v1
 kind: Pod                                            # 1
 metadata:
-  name: node
+  name: php1
   labels:
-    app: node                                 # 2
-spec:
+    app: php1                                 # 2
+spec:                                                # 3
   volumes:
   - name: project-volume
     hostPath:
       # directory location on host
       path: /hosthome/useradmin/data
       # this field is optional
-      type: DirectoryOrCreate                                                  # 3
+      type: DirectoryOrCreate
   containers:
-    - image: sergz99/node-symfony # 4
-      name: node                              # 5
+    - image: sergz99/php-symfony # 4
+      name: php1                              # 5
+      ports:
+        - containerPort: 9000                          # 6
       volumeMounts:
       - mountPath: /project
         name: project-volume
