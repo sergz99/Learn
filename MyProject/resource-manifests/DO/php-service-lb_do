@@ -1,3 +1,7 @@
+apiVersion: v1
+kind: Service              # 1
+metadata:
+  name: php
 annotations:
     service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
     service.beta.kubernetes.io/do-loadbalancer-size-slug: "lb-large"

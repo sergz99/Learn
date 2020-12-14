@@ -21,8 +21,8 @@ data:
       }
 
     server {
-        listen       8081;
-        server_name _;
+        listen     8081;
+        server_name localhost;
         root /project/public;
 
         location / {
@@ -30,7 +30,7 @@ data:
         }
 
         location ~ \.php$ {
-            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_pass localhost:9000;
             fastcgi_split_path_info ^(.+\.php)(/.*)$;
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
@@ -42,8 +42,8 @@ data:
 
     }
     server {
-        listen       8082;
-        server_name _;
+        listen     8082;
+        server_name localhost;
         root /project/public;
 
         location / {
@@ -51,7 +51,7 @@ data:
         }
 
         location ~ \.php$ {
-            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_pass localhost:9000;
             fastcgi_split_path_info ^(.+\.php)(/.*)$;
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
@@ -62,5 +62,4 @@ data:
         access_log /var/log/nginx/access.log;
 
     }
-
     }

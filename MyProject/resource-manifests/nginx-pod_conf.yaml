@@ -11,12 +11,18 @@ spec:
       # directory location on host
       path: /hosthome/useradmin/data
       # this field is optional
-      type: Directory                                                  # 3
+      type: DirectoryOrCreate
+  - name: nginx-config
+    configMap:
+      name: nginx-config                                                       # 3
   containers:
-    - image: sergz99/nginx-symfony # 4
+    - image: nginx # 4
       name: nginx-frontend                              # 5
       ports:
         - containerPort: 80                          # 6
       volumeMounts:
       - mountPath: /project
         name: project-volume
+      - name: nginx-config
+        mountPath: /etc/nginx/nginx.conf
+        subPath: nginx.conf        
