@@ -9,7 +9,7 @@ spec:                                                # 3
   - name: project-volume
     hostPath:
       # directory location on host
-      path: /hosthome/useradmin/data
+      path: /mnt/data
       # this field is optional
       type: DirectoryOrCreate
   containers:

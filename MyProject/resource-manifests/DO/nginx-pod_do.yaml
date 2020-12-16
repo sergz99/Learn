@@ -5,8 +5,18 @@ metadata:
   labels:
     app: nginx-frontend                                 # 2
 spec:
+  volumes:
+  - name: project-volume
+    hostPath:
+      # directory location on host
+      path: /mnt/data
+      # this field is optional
+      type: DirectoryOrCreate                                                  # 3
   containers:
     - image: sergz99/nginx-symfony # 4
       name: nginx-frontend                              # 5
       ports:
         - containerPort: 80                          # 6
+      volumeMounts:
+      - mountPath: /project
+        name: project-volume
