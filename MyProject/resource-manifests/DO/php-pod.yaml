@@ -7,8 +7,11 @@ metadata:
 spec:                                                # 3
   volumes:
   - name: project-volume
-      persistentVolumeClaim:
-        claimName: data
+    hostPath:
+      # directory location on host
+      path: /hosthome/useradmin/data
+      # this field is optional
+      type: DirectoryOrCreate
   containers:
     - image: sergz99/php-symfony # 4
       name: php                              # 5

@@ -48,6 +48,6 @@ spec:
       - name: mysql-vm
     hostPath:
       # directory location on host
-      path: /hosthome/useradmin/data/storage/mysql
+      path: /mnt/data/storage
       # this field is optional
       type: DirectoryOrCreate
