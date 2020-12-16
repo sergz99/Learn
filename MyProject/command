@@ -1,0 +1,32 @@
+cd ~/.kube && kubectl --kubeconfig="k8s-1-19-3-do-2-sfo2-1607869158192-myproject-kubeconfig.yaml" get nodes
+
+Configure your volume
+
+To configure your volume, do the following:
+Log into the Droplet
+
+ssh root@178.128.64.205
+http://178.128.131.28/
+
+Copy
+Mount the volume
+
+Run the following commands on the Droplet to make your volume accessible:
+
+# Create a mount point for your volume:
+$ mkdir -p /mnt/data
+
+# Mount your volume at the newly-created mount point:
+$ mount -o discard,defaults,noatime /dev/disk/by-id/scsi-0DO_Volume_data /mnt/data
+
+# Change fstab so the volume will be mounted after a reboot
+$ echo '/dev/disk/by-id/scsi-0DO_Volume_data /mnt/data ext4 defaults,nofail,discard 0 0' | sudo tee -a /etc/fstab
+
+Copy
+
+Access the volume, write files, and store other data on the volume in the Droplet's /mnt/data directory. The data will persist if you detach the volume and will be available when the volume is reattached to another Droplet.
+
+2d2fd956391149c6114c62508d
+UseRBiG_6843
+
+mount -o discard,defaults,noatime /dev/disk/by-id/scsi-0DO_Volume_data /mnt/data
