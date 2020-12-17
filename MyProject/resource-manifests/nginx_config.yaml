@@ -6,7 +6,8 @@ data:
   nginx.conf: |
     events {
     }
-    server {
+    http {
+      server {
 
         server_name localhost;
         root /project/public;
@@ -26,4 +27,5 @@ data:
         error_log /var/log/nginx/error.log;
         access_log /var/log/nginx/access.log;
 
-    }
+      }
+    }      
