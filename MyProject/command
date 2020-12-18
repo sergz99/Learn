@@ -5,9 +5,6 @@ Configure your volume
 To configure your volume, do the following:
 Log into the Droplet
 
-ssh root@178.128.64.205
-http://178.128.131.28/
-
 Copy
 Mount the volume
 
@@ -26,7 +23,9 @@ Copy
 
 Access the volume, write files, and store other data on the volume in the Droplet's /mnt/data directory. The data will persist if you detach the volume and will be available when the volume is reattached to another Droplet.
 
+mount -o discard,defaults,noatime /dev/disk/by-id/scsi-0DO_Volume_data /mnt/data
+
+ssh root@178.128.64.205
+http://178.128.131.28/
 2d2fd956391149c6114c62508d
 UseRBiG_6843
-
-mount -o discard,defaults,noatime /dev/disk/by-id/scsi-0DO_Volume_data /mnt/data
