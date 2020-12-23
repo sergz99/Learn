@@ -3,7 +3,7 @@ kind: Service              # 1
 metadata:
   name: php
 spec:
-  type: LoadBalancer       # 2
+  type: ClusterIP       # 2
   ports:
   - port: 9000               # 3
     protocol: TCP          # 4
