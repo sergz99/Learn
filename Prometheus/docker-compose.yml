@@ -1,8 +1,12 @@
-version: '3'networks:
+version: '3'
+networks:
   monitor-net:
-    driver: bridgevolumes:
+    driver: bridge
+volumes:
     prometheus_data: {}
-    grafana_data: {}services:  prometheus:
+    grafana_data: {}
+services:
+  prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
     volumes:
@@ -21,7 +25,8 @@ version: '3'networks:
     ports:
       - "9090:9090"
     networks:
-      - monitor-net  nodeexporter:
+      - monitor-net
+  nodeexporter:
     image: prom/node-exporter:latest
     container_name: nodeexporter
     user: root
@@ -38,7 +43,8 @@ version: '3'networks:
     expose:
       - 9100
     networks:
-      - monitor-net  grafana:
+      - monitor-net
+  grafana:
    image: grafana/grafana:latest
    container_name: grafana
    volumes:
