@@ -1,0 +1,28 @@
+Развертывание инфраструктуры VM с помощью Vagrant
+  https://github.com/sergz99/Learn/tree/main/Vagrant
+Применение Ansible (инсталляция пакетов для дальнейших экспериментов)
+  https://github.com/sergz99/Learn/tree/main/Ansible
+Работа с docker (docker-file,docker-compose, etc)
+
+ELK (ДОБАВИТЬ github)
+Promheteus
+  https://github.com/sergz99/Learn/tree/main/Prometheus
+Конфигурация базовых сервисов (front- back- end, SQL, App)
+Web серверы, проекты по проксированию трафика, back-end'ы, статика (Apache/Nginx)
+
+Изучение DevOps практик
+-gitlab ci/cd
+-K8S, развернутое в K8S приложение Symfony (в т.ч. в ManagedKubernetes)
+  https://github.com/sergz99/Learn/tree/main/MyProject
+
+
+
+
+Обо Мне
+Вечерняя школа Слёрм по Кубернетес
+Тестовый проект по результатам изучения
+  https://github.com/sergz99/Learn/tree/main/MyProject
+OTUS | Мониторинг и логирование: Zabbix, Prometheus, ELK
+ELK (ДОБАВИТЬ github)
+Promheteus
+  https://github.com/sergz99/Learn/tree/main/Prometheus
