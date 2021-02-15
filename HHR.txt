@@ -11,7 +11,7 @@ Promheteus
 Web серверы, проекты по проксированию трафика, back-end'ы, статика (Apache/Nginx)
 
 Изучение DevOps практик
--gitlab ci/cd
+-gitlab ci/cd 
   https://gitlab.com/sergz991/Learn/-/pipelines
 -K8S, развернутое в K8S приложение Symfony (в т.ч. в ManagedKubernetes)
   https://github.com/sergz99/Learn/tree/main/MyProject
