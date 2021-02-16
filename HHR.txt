@@ -33,7 +33,8 @@ Web серверы, проксирование трафика, back-end'ы, ст
 Тестовый проект по результатам изучения
   https://github.com/sergz99/Learn/tree/main/MyProject
 OTUS | Мониторинг и логирование: Zabbix, Prometheus, ELK
-Promheteus
-  https://github.com/sergz99/Learn/tree/main/Prometheus
-ELK
-  https://github.com/sergz99/Learn/tree/main/docker-elk
+Подняты тестовые проекты в Docker:
+  Promheteus
+    https://github.com/sergz99/Learn/tree/main/Prometheus
+  ELK
+    https://github.com/sergz99/Learn/tree/main/docker-elk
