@@ -32,6 +32,6 @@ ELK (ДОБАВИТЬ github)
 Тестовый проект по результатам изучения
   https://github.com/sergz99/Learn/tree/main/MyProject
 OTUS | Мониторинг и логирование: Zabbix, Prometheus, ELK
-ELK (ДОБАВИТЬ github)
 Promheteus
   https://github.com/sergz99/Learn/tree/main/Prometheus
+ELK (ДОБАВИТЬ github)
