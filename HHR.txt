@@ -10,12 +10,11 @@ Web серверы, проксирование трафика, back-end'ы, ст
   - плейбуки Ansible https://github.com/sergz99/Learn/tree/main/Ansible
   - Symfony приложение, развернутое в K8S (NGINX/php/node/MySQL)
       https://github.com/sergz99/Learn/tree/main/MyProject
-
-
-Promheteus
+Мониторинг и логирование
+      Promheteus
         https://github.com/sergz99/Learn/tree/main/Prometheus
-ELK (ДОБАВИТЬ github)
-
+      ELK
+        https://github.com/sergz99/Learn/tree/main/docker-elk
 
 Изучение DevOps практик
 
@@ -36,4 +35,5 @@ ELK (ДОБАВИТЬ github)
 OTUS | Мониторинг и логирование: Zabbix, Prometheus, ELK
 Promheteus
   https://github.com/sergz99/Learn/tree/main/Prometheus
-ELK (ДОБАВИТЬ github)
+ELK
+  https://github.com/sergz99/Learn/tree/main/docker-elk
