@@ -1,9 +1,10 @@
 Развертывание инфраструктуры VM с помощью Vagrant
   https://github.com/sergz99/Learn/tree/main/Vagrant
-Применение Ansible (инсталляция пакетов для дальнейших экспериментов)
+Применение Ansible (инсталляция пакетов и тестовых сред для дальнейших экспериментов)
   https://github.com/sergz99/Learn/tree/main/Ansible
 Работа с docker (docker-file,docker-compose, etc)
-
+  -https://hub.docker.com/u/sergz99 для проекта
+  https://github.com/sergz99/Learn/tree/main/MyProject
 Конфигурация базовых сервисов (front- back- end, SQL, App)
 Web серверы, проксирование трафика, back-end'ы, статика (Apache/Nginx)
   - плейбуки Ansible https://github.com/sergz99/Learn/tree/main/Ansible
@@ -18,7 +19,8 @@ ELK (ДОБАВИТЬ github)
 
 Изучение DevOps практик
 
--K8S, развернутое в K8S приложение Symfony (в т.ч. в ManagedKubernetes)
+-K8S, развернутое в K8S приложение Symfony (в т.ч. в ManagedKubernetes
+- DigitalOcean, YandexCloud)
   https://github.com/sergz99/Learn/tree/main/MyProject
 -gitlab ci/cd
   https://gitlab.com/sergz991/Learn/-/pipelines
