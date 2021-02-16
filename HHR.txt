@@ -16,17 +16,12 @@ Web серверы, проксирование трафика, back-end'ы, ст
       ELK
         https://github.com/sergz99/Learn/tree/main/docker-elk
 
-Изучение DevOps практик
-
+Изучение DevOps практик:
 -K8S, развернутое в K8S приложение Symfony (в т.ч. в ManagedKubernetes
-- DigitalOcean, YandexCloud)
+  - DigitalOcean, YandexCloud)
   https://github.com/sergz99/Learn/tree/main/MyProject
 -gitlab ci/cd
   https://gitlab.com/sergz991/Learn/-/pipelines
-
-
-
-
 
 Обо Мне
 Вечерняя школа Слёрм по Кубернетес
