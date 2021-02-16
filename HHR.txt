@@ -4,20 +4,25 @@
   https://github.com/sergz99/Learn/tree/main/Ansible
 Работа с docker (docker-file,docker-compose, etc)
 
-ELK (ДОБАВИТЬ github)
-Promheteus
-  https://github.com/sergz99/Learn/tree/main/Prometheus
 Конфигурация базовых сервисов (front- back- end, SQL, App)
 Web серверы, проксирование трафика, back-end'ы, статика (Apache/Nginx)
   - плейбуки Ansible https://github.com/sergz99/Learn/tree/main/Ansible
   - Symfony приложение, развернутое в K8S (NGINX/php/node/MySQL)
       https://github.com/sergz99/Learn/tree/main/MyProject
 
+
+Promheteus
+        https://github.com/sergz99/Learn/tree/main/Prometheus
+ELK (ДОБАВИТЬ github)
+
+
 Изучение DevOps практик
--gitlab ci/cd
-  https://gitlab.com/sergz991/Learn/-/pipelines
+
 -K8S, развернутое в K8S приложение Symfony (в т.ч. в ManagedKubernetes)
   https://github.com/sergz99/Learn/tree/main/MyProject
+-gitlab ci/cd
+  https://gitlab.com/sergz991/Learn/-/pipelines
+
 
 
 
