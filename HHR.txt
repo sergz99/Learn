@@ -8,10 +8,13 @@ ELK (ДОБАВИТЬ github)
 Promheteus
   https://github.com/sergz99/Learn/tree/main/Prometheus
 Конфигурация базовых сервисов (front- back- end, SQL, App)
-Web серверы, проекты по проксированию трафика, back-end'ы, статика (Apache/Nginx)
+Web серверы, проксирование трафика, back-end'ы, статика (Apache/Nginx)
+  - плейбуки Ansible https://github.com/sergz99/Learn/tree/main/Ansible
+  - Symfony приложение, развернутое в K8S (NGINX/php/node/MySQL)
+      https://github.com/sergz99/Learn/tree/main/MyProject
 
 Изучение DevOps практик
--gitlab ci/cd 
+-gitlab ci/cd
   https://gitlab.com/sergz991/Learn/-/pipelines
 -K8S, развернутое в K8S приложение Symfony (в т.ч. в ManagedKubernetes)
   https://github.com/sergz99/Learn/tree/main/MyProject
