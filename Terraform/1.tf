@@ -1,6 +1,6 @@
 provider "aws" {
-  access_key = "AKIARHITH4FVBEGCMC7R"
-  secret_key = "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"
+  access_key = ""
+  secret_key = ""
   region     = "eu-central-1"
 }
 resource "aws_instance" "ubuntu" {
