@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become_user: root
+  gather_facts: false
+  tasks:
+  - name: Extend an existing partition to fill all available space
+       community.general.parted:
+         device: /dev/sdb
+         number: "{{ sdb_info.partitions | length }}"
+         part_end: "100%"
+         resize: true
+         state: present
+  - name: Extend an existing LVM partition to fill all available space
+       community.general.parted:
+         device: /dev/sdc
+         number: "{{ sdb_info.partitions | length }}"
+         flags: [ lvm ]
+         part_end: "100%"
+         resize: true
+         state: present
