@@ -3,6 +3,11 @@
   become_user: root
   gather_facts: false
   tasks:
+   - name: Install aptitude using apt
+     apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+   - name: Install required system packages
+     apt: name={{ item }} state=latest update_cache=yes
+     loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
   - name: Set a hostname
     ansible.builtin.hostname:
         name: web01
@@ -11,4 +16,4 @@
      name: johnd
      comment: John Doe
      uid: 1040
-     group: vagrant
+     group: admin
