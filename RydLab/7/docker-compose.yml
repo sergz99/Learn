@@ -10,8 +10,8 @@ services:
       - 8080:8080 # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
-      - /opt/traefik/:/opt/traefik/
-      - /opt/traefik/certs/:/opt/traefik/certs/
+      - ./:/opt/traefik/
+      - ./certs/:/opt/traefik/certs/
     networks:
     - proxy
     container_name: traefik
@@ -25,11 +25,12 @@ services:
     links:
       - traefik
     labels:
-      - traefik.enabled=true
-      - traefik.frontend.rule=Host:localhost
-      - traefik.docker.network=proxy
-      - traefik.port=80
-      - traefik.protocol=http
+    - "traefik.enabled=true"
+    - "traefik.http.routers.nginx.rule=Host(`localhost`)"
+    - "traefik.http.routers.nginx.entrypoints=http"
+    - "traefik.docker.network=proxy"
+    - "traefik.port=80"
+    - "traefik.protocol=http"
     networks:
       - proxy
       - default
