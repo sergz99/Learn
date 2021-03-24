@@ -1,14 +1,39 @@
-version: '2'
+version: '3'
+
 services:
-  web:
-    image: odoo:12.0
-    depends_on:
-      - db
+  traefik:
+    image: traefik:latest # The official Traefik docker image
+    command: --api --docker # Enables the web UI and tells Træfik to listen to docker
     ports:
-      - "8069:8069"
-  db:
-    image: postgres:10
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_PASSWORD=odoo
-      - POSTGRES_USER=odoo
+      - 443:443
+      - 80:80     # The HTTP port
+      - 8080:8080 # The Web UI (enabled by --api)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+      - ./:/opt/traefik/
+      - ./certs/:/opt/traefik/certs/
+    networks:
+    - proxy
+    container_name: traefik
+    restart: always
+  app:
+    image: nginx
+    restart: always
+    working_dir: /usr/share/nginx/html/public
+    volumes:
+      - ./:/usr/share/nginx/html/   #монтирование папки с сайтом
+    links:
+      - traefik
+    labels:
+    - "traefik.enabled=true"
+    - "traefik.http.routers.nginx.rule=Host(`localhost`)"
+    - "traefik.http.routers.nginx.entrypoints=http"
+    - "traefik.docker.network=proxy"
+    - "traefik.port=80"
+    - "traefik.protocol=http"
+    networks:
+      - proxy
+      - default
+networks:
+  proxy:
+    external: true
