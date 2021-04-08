@@ -1,0 +1,13 @@
+---
+- hosts: 127.0.0.1
+  tasks:
+    - hashivault_secret:
+        secret: giant
+        data:
+            foo: foe
+            fie: fum
+    - hashivault_read:
+        secret: giant
+        key: fie
+        version: 2
+      register: vault_read
