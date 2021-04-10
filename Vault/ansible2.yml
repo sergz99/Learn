@@ -4,4 +4,4 @@
   tasks:
    - name: Return all secrets from a path
      ansible.builtin.debug:
-       msg: "{{ lookup('community.hashi_vault.hashi_vault', 'secret/giant token=myroot url=http://localhost:8200') }}"
+       msg: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/user token=myroot url=http://192.168.100.100:8200') }}"

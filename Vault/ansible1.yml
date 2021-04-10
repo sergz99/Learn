@@ -2,7 +2,8 @@
 - hosts: all
   become_user: root
   tasks:
-    - hashivault_read:
+    - name: Read
+      hashivault_read:
         secret: giant
         key: foo
         version: 1
