@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become_user: root
+  tasks:
+  - name: return secrets as a dict (default)
+    ansible.builtin.set_fact:
+     my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'kv', token=myroot, url='http://192.168.100.100:8200') }}"
+  - ansible.builtin.debug:
+     msg: "{{ my_secrets['secret_key'] }}"
+  - ansible.builtin.debug:
+     msg: "Secret '{{ item.key }}' has value '{{ item.value }}'"
+    loop: "{{ my_secrets | dict2items }}"
