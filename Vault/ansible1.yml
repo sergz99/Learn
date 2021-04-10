@@ -1,8 +1,9 @@
 ---
-- hosts: 192.168.0.151
+- hosts: all
+  become_user: root
   tasks:
     - hashivault_read:
         secret: giant
-        key: fie
-        version: 2
+        key: foo
+        version: 1
       register: vault_read
