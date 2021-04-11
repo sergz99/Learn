@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become_user: root
+  tasks:
+   - name: Return all secrets from a path
+     ansible.builtin.set_fact:
+       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/smtp1 token=myroot url=http://192.168.100.100:8200') }}"
+     register: result
+     ignore_errors: true
+
+   - ansible.builtin.debug:
+       var:  my_secrets
+     when: result is succeeded
+
+   - ansible.builtin.debug:
+       msg: "Secret not found"
+     when: result is failed
