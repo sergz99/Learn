@@ -1,10 +1,24 @@
 ---
-- hosts: all
+- hosts: 192.168.100.152
   become_user: root
   tasks:
+    - name: Write
+      hashivault_write:
+        url: "http://192.168.100.152:8200"
+        token: myroot
+        mount_point: kv
+        secret: pop3
+        data:
+           login1: password1
     - name: Read
       hashivault_read:
-        secret: giant
-        key: foo
+        url: "http://192.168.100.152:8200"
+        token: myroot
+        mount_point: kv
+        secret: smtp
+        key: login
         version: 1
       register: vault_read
+    - name: Return all secrets from a path
+      ansible.builtin.debug:
+       var: vault_read
