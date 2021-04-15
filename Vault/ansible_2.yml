@@ -1,10 +1,15 @@
 ---
 - hosts: all
   become_user: root
+  vars_prompt:
+    - name: service
+      prompt: Service?
+    - name: login
+      prompt: Login?
   tasks:
    - name: Return all secrets from a path
      ansible.builtin.set_fact:
-       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/smtp1 token=myroot url=http://192.168.100.100:8200') }}"
+       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/{{ service }}:{{ login }} token=myroot url=http://192.168.100.152:8200') }}"
      register: result
      ignore_errors: true
 
@@ -12,6 +17,12 @@
        var:  my_secrets
      when: result is succeeded
 
-   - ansible.builtin.debug:
-       msg: "Secret not found"
+   - name: Write
+     hashivault_write:
+        url: "http://192.168.100.152:8200"
+        token: myroot
+        mount_point: kv
+        secret: "{{ service }}"
+        data:
+           "{{ login }}": password1
      when: result is failed
