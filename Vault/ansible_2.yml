@@ -4,12 +4,16 @@
   vars_prompt:
     - name: service
       prompt: Service?
+      private: no
     - name: login
       prompt: Login?
+      private: no
+    - name: token
+      prompt: Token?
   tasks:
    - name: Return all secrets from a path
      ansible.builtin.set_fact:
-       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/{{ service }}:{{ login }} token=myroot url=http://192.168.100.152:8200') }}"
+       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/{{ service }}:{{ login }} token={{ token }} url=http://192.168.0.153:8200') }}"
      register: result
      ignore_errors: true
 
@@ -17,12 +21,18 @@
        var:  my_secrets
      when: result is succeeded
 
+   - name: create lowercase 8 character password
+     set_fact:
+        setup_password: "{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
+   - name: Print setup_password
+     ansible.builtin.debug:
+        var: setup_password
    - name: Write
      hashivault_write:
-        url: "http://192.168.100.152:8200"
+        url: "http://192.168.0.153:8200"
         token: myroot
         mount_point: kv
-        secret: "{{ service }}"
+        secret: "service"
         data:
-           "{{ login }}": password1
+           "login": "setup_password"
      when: result is failed
