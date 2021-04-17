@@ -13,7 +13,7 @@
   tasks:
    - name: Return all secrets from a path
      ansible.builtin.set_fact:
-       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/{{ service }}:{{ login }} token={{ token }} url=http://192.168.0.153:8200') }}"
+       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/{{ service }}:{{ login }} token={{ token }} url=http://192.168.100.152:8200') }}"
      register: result
      ignore_errors: true
 
@@ -32,7 +32,8 @@
         url: "http://192.168.0.153:8200"
         token: myroot
         mount_point: kv
+        update: yes
         secret: "service"
         data:
-           "login": "setup_password"
+           '{ "{{ login }}": "{{ setup_password }}" }'
      when: result is failed
