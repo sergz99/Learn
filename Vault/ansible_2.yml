@@ -30,7 +30,7 @@
      ignore_errors: true
 
    - ansible.builtin.debug:
-       msg: "The {{ service }} service already has a password {{ my_secrets }} for login {{ login }}"
+       msg: "The '{{ service }}' service already has a password '{{ my_secrets }}' for login '{{ login }}'"
      when: result is succeeded
 
 
