@@ -8,32 +8,47 @@
     - name: login
       prompt: Login?
       private: no
+    - name: vault_addr
+      prompt: vault_addr
+      private: no
     - name: token
       prompt: Token?
   tasks:
    - name: Return all secrets from a path
      ansible.builtin.set_fact:
-       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/{{ service }}:{{ login }} token={{ token }} url=http://192.168.100.152:8200') }}"
+       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/{{ service }} token={{ token }} url={{ vault_addr }}') }}"
+     ignore_errors: true
+   - ansible.builtin.debug:
+       msg: "List of services '{{ item.key }}' has value '{{ item.value }}'"
+     loop: "{{ my_secrets | dict2items }}"
+     ignore_errors: true
+
+   - name: Return secrets/login from a path
+     ansible.builtin.set_fact:
+       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/{{ service }}:{{ login }} token={{ token }} url={{ vault_addr }}') }}"
      register: result
      ignore_errors: true
 
    - ansible.builtin.debug:
-       var:  my_secrets
+       msg: "The {{ service }} service already has a password {{ my_secrets }} for login {{ login }}"
      when: result is succeeded
+
 
    - name: create lowercase 8 character password
      set_fact:
-        setup_password: "{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
+        setup_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,punctuation length=8') }}"
+     when: result is failed
    - name: Print setup_password
      ansible.builtin.debug:
         var: setup_password
-   - name: Write
+     when: result is failed
+   - name: Write secret to Vault
      hashivault_write:
-        url: "http://192.168.0.153:8200"
-        token: myroot
+        url: "{{ vault_addr }}"
+        token: "{{ token }}"
         mount_point: kv
         update: yes
-        secret: "service"
+        secret: "{{ service }}"
         data:
            '{ "{{ login }}": "{{ setup_password }}" }'
      when: result is failed
