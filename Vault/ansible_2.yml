@@ -33,7 +33,6 @@
        msg: "The '{{ service }}' service already has a password '{{ my_secrets }}' for login '{{ login }}'"
      when: result is succeeded
 
-
    - name: create lowercase 8 character password
      set_fact:
         setup_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,punctuation length=8') }}"
@@ -42,6 +41,7 @@
      ansible.builtin.debug:
         var: setup_password
      when: result is failed
+
    - name: Write secret to Vault
      hashivault_write:
         url: "{{ vault_addr }}"
