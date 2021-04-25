@@ -1,22 +1,8 @@
 ---
-- hosts: all
-  become_user: root
-  vars_prompt:
-    - name: service
-      prompt: Service?
-      private: no
-    - name: login
-      prompt: Login?
-      private: no
-    - name: vault_addr
-      prompt: vault_addr
-      private: no
-    - name: token
-      prompt: Token?
-  tasks:
+# tasks file for hashi-vault
    - name: Return all secrets from a path
      ansible.builtin.set_fact:
-       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/{{ service }} token={{ token }} url={{ vault_addr }}') }}"
+       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret={{ mount_point }}/{{ service }} token={{ token }} url={{ vault_addr }}') }}"
      ignore_errors: true
    - ansible.builtin.debug:
        msg: "List of services '{{ item.key }}' has value '{{ item.value }}'"
@@ -25,7 +11,7 @@
 
    - name: Return secrets/login from a path
      ansible.builtin.set_fact:
-       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/{{ service }}:{{ login }} token={{ token }} url={{ vault_addr }}') }}"
+       my_secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret={{ mount_point }}/{{ service }}:{{ login }} token={{ token }} url={{ vault_addr }}') }}"
      register: result
      ignore_errors: true
 
@@ -35,7 +21,7 @@
 
    - name: create lowercase 8 character password
      set_fact:
-        setup_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,punctuation length=8') }}"
+        setup_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,punctuation length={{ passwd_length }}') }}"
      when: result is failed
    - name: Print setup_password
      ansible.builtin.debug:
@@ -46,7 +32,7 @@
      hashivault_write:
         url: "{{ vault_addr }}"
         token: "{{ token }}"
-        mount_point:: {{ mount_point: }}
+        mount_point: {{ mount_point }}
         update: yes
         secret: "{{ service }}"
         data:

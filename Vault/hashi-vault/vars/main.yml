@@ -1,0 +1,8 @@
+---
+# vars file for hashi-vault
+service:
+login:
+vault_addr:
+token:
+passwd_length:
+mount_point:  
