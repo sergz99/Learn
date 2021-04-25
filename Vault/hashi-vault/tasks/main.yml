@@ -21,7 +21,7 @@
 
    - name: create lowercase 8 character password
      set_fact:
-        setup_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits,punctuation length={{ passwd_length }}') }}"
+        setup_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length={{ passwd_length }}') }}"
      when: result is failed
    - name: Print setup_password
      ansible.builtin.debug:
@@ -32,7 +32,7 @@
      hashivault_write:
         url: "{{ vault_addr }}"
         token: "{{ token }}"
-        mount_point: {{ mount_point }}
+        mount_point: "{{ mount_point }}"
         update: yes
         secret: "{{ service }}"
         data:
