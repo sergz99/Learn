@@ -1,15 +1,3 @@
 ---
 # vars file for hashi-vault
-hashi-vault
-  service:
-    - smtp
-  login:
-    - login1_smtp
-  vault_addr:
-    - https://vault_host:8200
-  token:
-    - myroot
-  passwd_length:
-    - 12
-  mount_point:
-     - kv  
+ 
