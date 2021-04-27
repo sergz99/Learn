@@ -10,6 +10,19 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 
 Role Variables
 --------------
+service:
+  - Это имя сервиса (секрета) для которого сгенерируется/проверится
+  наличие пары логин/пароль
+login:
+  - логин для генерации/проверки пароля
+vault_addr:
+  - https://vault_host:8200
+token:
+  - токен для HashicorpVault
+passwd_length:
+  - 12 #Длина пароля
+mount_point:
+     - kv #Точка монтирования для чтения/записи секретов
 
 A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
@@ -23,9 +36,11 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+---
+- hosts: all
+  become_user: root
+  roles:
+    - hashi-vault
 
 License
 -------
