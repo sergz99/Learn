@@ -1,0 +1,39 @@
+name: Deploy_to_MB_instances
+
+on:
+  workflow_dispatch:
+    inputs:
+      DEPLOY_HOST:
+        description: 'Host to deploing'     
+        required: true
+        default: 'stage' 
+        type: choice
+        options:
+        - prod
+        - stage
+      DEPLOY:
+        description: 'DEPLOY'
+        required: false 
+        type: boolean
+
+jobs:
+  Deploy_docker_image:
+    name: Deploy new docker image on stage/prod
+    runs-on: [self-hosted, linux, X64, ${{ github.event.inputs.DEPLOY_HOST }}]
+    if: ${{ github.event.inputs.DEPLOY }} == 'true'
+    steps:
+    - name: Set deploy variables
+      run: |
+        if [[ "$DEPLOY_HOST" = 'stage' }} ]]; then
+            echo "WORK_DIR=${{ secrets.STAGING_WORK_DIR }}" >> $GITHUB_ENV
+        fi
+        if [[ "$DEPLOY_HOST" = 'prod' }} ]]; then
+            echo "WORK_DIR=${{ secrets.PROD_WORK_DIR }}" >> $GITHUB_ENV
+        fi
+
+    - name: Deploy
+      id: deploy
+      run: |
+        cd /home/admin/stage-odoo14ee-mb
+        ls -la
+        docker-compose pull odoo
