@@ -18,7 +18,7 @@ on:
 
 jobs:
   Deploy_docker_image:
-    name: Deploy new docker image on stage_prod
+    name: Deploy
     runs-on: [self-hosted, linux, X64, ${{ github.event.inputs.DEPLOY_HOST }}]
     if: ${{ github.event.inputs.DEPLOY }} == 'true'
     steps:
