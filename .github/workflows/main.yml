@@ -34,6 +34,5 @@ jobs:
     - name: Deploy
       id: deploy
       run: |
-        cd /home/admin/stage-odoo14ee-mb
+        cd ${{ env.WORK_DIR }}
         ls -la
-        docker-compose pull odoo
