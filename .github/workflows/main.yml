@@ -25,10 +25,10 @@ jobs:
     steps:
     - name: Set deploy variables
       run: |
-        if [[ "${{ github.event.inputs.DEPLOY_HOST }}" == "stage" }} ]]; then
+        if [[ "${{ github.event.inputs.DEPLOY_HOST }}" == "stage" ]]; then
             echo "WORK_DIR=${{ secrets.STAGING_WORK_DIR }}" >> $GITHUB_ENV
         fi
-        if [[ "${{ github.event.inputs.DEPLOY_HOST }}" == "prod" }} ]]; then
+        if [[ "${{ github.event.inputs.DEPLOY_HOST }}" == "prod" ]]; then
             echo "WORK_DIR=${{ secrets.PROD_WORK_DIR }}" >> $GITHUB_ENV
         fi
 
