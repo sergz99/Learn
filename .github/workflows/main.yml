@@ -30,3 +30,17 @@ jobs:
       run: |
         cd ${{ env.WORK_DIR }}
         ls -la
+
+  Deploy_docker_image_prod:
+    name: deploy_prod
+    runs-on: [self-hosted, linux, X64, stage]
+    if: ${{ github.event.inputs.DEPLOY_HOST }} == 'prod'
+    env:
+      WORK_DIR: ${{ secrets.PROD_WORK_DIR }}
+    steps:
+
+    - name: Deploy
+      id: deploy
+      run: |
+        cd ${{ env.WORK_DIR }}
+        ls -la
