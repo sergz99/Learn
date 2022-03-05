@@ -19,8 +19,8 @@ on:
 jobs:
   Deploy_docker_image:
     name: example
-    runs-on: [self-hosted, linux, X64, ${{ github.event.inputs.DEPLOY_HOST }}]
-    if: ${{ github.event.inputs.DEPLOY }} == 'true'
+    runs-on: [self-hosted, linux, X64, stage]
+    if: ${{ github.event.inputs.DEPLOY_HOST }} == 'stage'
     
     steps:
     - name: Set deploy variables
