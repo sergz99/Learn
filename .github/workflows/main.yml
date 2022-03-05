@@ -20,7 +20,7 @@ jobs:
   Deploy_docker_image_stage:
     name: deploy_stage
     runs-on: [self-hosted, linux, X64, stage]
-    if: ${{ github.event.inputs.DEPLOY_HOST }} == 'stage'
+    if: github.event.inputs.DEPLOY_HOST == 'stage'
     env:
       WORK_DIR: ${{ secrets.STAGING_WORK_DIR }}
     steps:
@@ -34,7 +34,7 @@ jobs:
   Deploy_docker_image_prod:
     name: deploy_prod
     runs-on: [self-hosted, linux, X64, stage]
-    if: ${{ github.event.inputs.DEPLOY_HOST }} == 'prod'
+    if: github.event.inputs.DEPLOY_HOST == 'prod'
     env:
       WORK_DIR: ${{ secrets.PROD_WORK_DIR }}
     steps:
