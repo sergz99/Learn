@@ -18,7 +18,7 @@ on:
 
 jobs:
   Deploy_docker_image:
-    name: name
+    name: test
     runs-on: [self-hosted, linux, X64, ${{ github.event.inputs.DEPLOY_HOST }}]
     if: ${{ github.event.inputs.DEPLOY }} == 'true'
     steps:
