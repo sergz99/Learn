@@ -19,7 +19,7 @@ jobs:
       - name: Display read-yaml output
         run: echo "${{ steps.yaml-data.outputs.data }}"
       - name: Load environment from YAML
-        uses: doughepi/yaml-env-action
+        uses: doughepi/yaml-env-action@main
         with:
           files: /home/sergeyzuev/odoo_instances/odoo-test-pg-exp/MODULES_CHANGELOG.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
       - run: | 
